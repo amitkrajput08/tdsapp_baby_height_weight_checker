@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Height and Weight Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Baby Height and Weight Checker</h1>
+        <form id="baby-form">
+            <label for="age">Enter Baby's Age (in months):</label>
+            <input type="number" id="age" name="age" required min="0" max="60">
+            <button type="submit">Check</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('baby-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const age = document.getElementById('age').value;
+            const resultDiv = document.getElementById('result');
+            
+            let height, weight;
+
+            if (age >= 0 && age <= 60) {
+                switch (true) {
+                    case (age >= 0 && age < 1):
+                        height = '46-53 cm';
+                        weight = '2.5-4.5 kg';
+                        break;
+                    case (age >= 1 && age < 3):
+                        height = '50-60 cm';
+                        weight = '3.2-5.5 kg';
+                        break;
+                    case (age >= 3 && age < 6):
+                        height = '58-68 cm';
+                        weight = '5.0-7.5 kg';
+                        break;
+                    case (age >= 6 && age < 9):
+                        height = '62-72 cm';
+                        weight = '6.0-9.0 kg';
+                        break;
+                    case (age >= 9 && age < 12):
+                        height = '67-75 cm';
+                        weight = '7.0-10.0 kg';
+                        break;
+                    case (age >= 12 && age < 24):
+                        height = '72-82 cm';
+                        weight = '8.0-12.0 kg';
+                        break;
+                    case (age >= 24 && age < 36):
+                        height = '82-92 cm';
+                        weight = '10.0-15.0 kg';
+                        break;
+                    case (age >= 36 && age < 48):
+                        height = '92-102 cm';
+                        weight = '13.0-18.0 kg';
+                        break;
+                    case (age >= 48 && age <= 60):
+                        height = '98-110 cm';
+                        weight = '15.0-20.0 kg';
+                        break;
+                    default:
+                        height = 'Data not available';
+                        weight = 'Data not available';
+                        break;
+                }
+
+                resultDiv.innerHTML = `At ${age} months: <br> Healthy Height: ${height} <br> Healthy Weight: ${weight}`;
+            } else {
+                resultDiv.innerHTML = 'Please enter a valid age between 0 and 60 months.';
+            }
+        });
+    </script>
+</body>
+</html>
